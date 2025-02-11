@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>طلب الاشتراك | دال سين</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Custom CSS -->
+  <style>
+    /* Header styles updated */
+    .site-header {
+      background-color: #fff;
+      padding: 40px 20px;
+      text-align: center;
+      border-bottom: 2px solid #35AA73;
+    }
+    .logo {
+      max-width: 300px;
+      margin-bottom: 20px;
+      padding: 10px;
+      border-radius: 4px;
+    }
+    .intro-title {
+      font-size: 2.2rem;
+      margin: 10px 0;
+      color: #35AA73;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+    .intro-text {
+      font-size: 1.2rem;
+      background-color: rgba(53,170,115,0.1);
+      display: inline-block;
+      padding: 10px 15px;
+      border-radius: 5px;
+      margin: 0 auto;
+    }
+    
+    /* Keyframe for fadeIn animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    body {
+      font-family: 'Tajawal', sans-serif;
+      direction: rtl;
+      background-color: #f8f8f8;
+      color: #686868;
+    }
+    .container {
+      max-width: 900px;
+    }
+    h2, h4 {
+      color: #35AA73;
+    }
+    .package-box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      border: 2px solid #ccc;
+      margin-bottom: 25px;
+      transition: all 0.3s ease;
+      animation: fadeInUp 0.8s ease-out;
+    }
+    .package-box:hover {
+      box-shadow: 0 4px 10px rgba(53,170,115,0.3);
+      border-color: #35AA73;
+    }
+    .package-title {
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #35AA73;
+      margin-bottom: 15px;
+    }
+    .package-details {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+    .package-details ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .package-details li {
+      margin-bottom: 5px;
+      padding: 5px 0;
+      border-bottom: 1px dotted #ccc;
+      transition: background-color 0.3s, transform 0.3s, color 0.3s;
+    }
+    .package-details li:hover {
+      background-color: #e6f4ea;
+      color: #35AA73;
+      transform: scale(1.02);
+      font-weight: bold;
+      cursor: pointer;
+    }
+    /* Highlighting labels for duration and payment */
+    .price-options label {
+      font-weight: bold;
+      background-color: #e6f4ea;
+      padding: 4px 8px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .price-options select {
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      margin-top: 5px;
+    }
+    .result {
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 10px;
+      color: #35AA73;
+    }
+    /* Radio button styling */
+    .radio-select {
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    .radio-select input[type="radio"] {
+      width: 20px;
+      height: 20px;
+      accent-color: #35AA73;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+    .radio-select label {
+      font-weight: bold;
+      color: #686868;
+      cursor: pointer;
+    }
+    .package-image {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      object-fit: cover;
+    }
+    .btn-custom {
+      background-color: #35AA73;
+      border: 2px solid #35AA73;
+      color: #fff;
+      transition: transform 0.3s, background-color 0.3s, border-color 0.3s;
+      text-decoration: none;
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      text-align: center;
+      border-radius: 4px;
+      width: 100%;
+      font-size: 1.2rem;
+      margin-top: 20px;
+    }
+    .btn-custom:hover {
+      transform: scale(1.05);
+      background-color: #2d8e61;
+      border-color: #2d8e61;
+    }
+    footer {
+      background-color: #686868;
+      color: #fff;
+      padding: 20px 0;
+      margin-top: 40px;
+      text-align: center;
+    }
+    footer a {
+      color: #35AA73;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+    /* Responsive adjustments */
+    @media (max-width: 576px) {
+      .package-title {
+        font-size: 1.6rem;
+      }
+      .btn-custom {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Enhanced Header Section -->
+  <header class="site-header">
+    <img src="https://dalseen.sa/frontend-assets/images/logo/logo-hor.svg" alt="دال سين" class="logo">
+    <h1 class="intro-title">مرحباً بكم في دال سين</h1>
+    <p class="intro-text">اكتشف باقاتنا المتنوعة المصممة لتلبية احتياجات أعمالك. استعرض التفاصيل أدناه واختر الباقة المناسبة لتطوير أعمالك.</p>
+  </header>
+
+  <div class="container mt-4">
+    <h2 class="text-center mb-4">💰 تفاصيل الباقات</h2>
+
+    <!-- Package Box for باقة المكس -->
+    <div class="package-box" id="package-mix">
+      <div class="radio-select">
+        <input type="radio" name="selectedPackage" value="mix" id="radio-mix" checked>
+        <label for="radio-mix">اختر هذه الباقة</label>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <img src="https://drive.google.com/thumbnail?id=1dRWlhCoRx_jx5zGNYFCV1xQhZ7gD-2Wo&sz=w1000" alt="باقة المكس" class="package-image">
+        </div>
+        <div class="col-md-8">
+          <div class="package-title">باقة المكس</div>
+          <div class="package-details">
+            <ul>
+              <li>شاشة تابلت مع طابعة مدمجة</li>
+              <li>درج كاشير</li>
+              <li>قاعدة V3Mix</li>
+              <li>نظام كاشير SAAED POS</li>
+              <li>خدمة دفع الشبكة (سعد باي)</li>
+            </ul>
+          </div>
+          <div class="price-options">
+            <div class="mb-2">
+              <label for="duration-mix">📅 مدة الاشتراك:</label>
+              <select id="duration-mix" class="form-select" onchange="updatePriceForPackage('mix')">
+                <option value="1">سنة واحدة</option>
+                <option value="2">سنتان</option>
+              </select>
+            </div>
+            <div class="mb-2">
+              <label for="paymentType-mix">💳 طريقة الدفع:</label>
+              <select id="paymentType-mix" class="form-select" onchange="updatePriceForPackage('mix')">
+                <option value="monthly">اشتراك شهري</option>
+                <option value="cash">دفعة واحدة</option>
+              </select>
+            </div>
+            <div class="result" id="price-mix">💵 السعر: -</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Package Box for الباقة الشاملة -->
+    <div class="package-box" id="package-shamela">
+      <div class="radio-select">
+        <input type="radio" name="selectedPackage" value="shamela" id="radio-shamela">
+        <label for="radio-shamela">اختر هذه الباقة</label>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <img src="https://drive.google.com/thumbnail?id=1sBB2NtY7NdZc0spJEeNVapfMNmOpdxNP&sz=w1000" alt="الباقة الشاملة" class="package-image">
+        </div>
+        <div class="col-md-8">
+          <div class="package-title">الباقة الشاملة</div>
+          <div class="package-details">
+            <ul>
+              <li>شاشة لمس</li>
+              <li>طابعة حرارية</li>
+              <li>ماسح باركود</li>
+              <li>درج كاشير</li>
+              <li>جهاز دفع شبكة</li>
+              <li>نظام كاشير SAAED POS</li>
+              <li>خدمة دفع الشبكة SAAED PAY</li>
+            </ul>
+          </div>
+          <div class="price-options">
+            <div class="mb-2">
+              <label for="duration-shamela">📅 مدة الاشتراك:</label>
+              <select id="duration-shamela" class="form-select" onchange="updatePriceForPackage('shamela')">
+                <option value="1">سنة واحدة</option>
+                <option value="2">سنتان</option>
+              </select>
+            </div>
+            <div class="mb-2">
+              <label for="paymentType-shamela">💳 طريقة الدفع:</label>
+              <select id="paymentType-shamela" class="form-select" onchange="updatePriceForPackage('shamela')">
+                <option value="monthly">اشتراك شهري</option>
+                <option value="cash">دفعة واحدة</option>
+              </select>
+            </div>
+            <div class="result" id="price-shamela">💵 السعر: -</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Package Box for الباقة الأساسية -->
+    <div class="package-box" id="package-asasiyah">
+      <div class="radio-select">
+        <input type="radio" name="selectedPackage" value="asasiyah" id="radio-asasiyah">
+        <label for="radio-asasiyah">اختر هذه الباقة</label>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <img src="https://drive.google.com/thumbnail?id=1QZuFZutWbRPoXfPw9k7vMmGEBS-8emB_&sz=w1000" alt="الباقة الأساسية" class="package-image">
+        </div>
+        <div class="col-md-8">
+          <div class="package-title">الباقة الأساسية</div>
+          <div class="package-details">
+            <ul>
+              <li>شاشة لمس</li>
+              <li>طابعة حرارية</li>
+              <li>ماسح باركود</li>
+              <li>درج كاشير</li>
+              <li>نظام كاشير SAAED POS</li>
+            </ul>
+          </div>
+          <div class="price-options">
+            <div class="mb-2">
+              <label for="duration-asasiyah">📅 مدة الاشتراك:</label>
+              <select id="duration-asasiyah" class="form-select" onchange="updatePriceForPackage('asasiyah')">
+                <option value="1">سنة واحدة</option>
+                <option value="2">سنتان</option>
+              </select>
+            </div>
+            <div class="mb-2">
+              <label for="paymentType-asasiyah">💳 طريقة الدفع:</label>
+              <select id="paymentType-asasiyah" class="form-select" onchange="updatePriceForPackage('asasiyah')">
+                <option value="monthly">اشتراك شهري</option>
+                <option value="cash">دفعة واحدة</option>
+              </select>
+            </div>
+            <div class="result" id="price-asasiyah">💵 السعر: -</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Package Box for باقة المحمول -->
+    <div class="package-box" id="package-mobile">
+      <div class="radio-select">
+        <input type="radio" name="selectedPackage" value="mobile" id="radio-mobile">
+        <label for="radio-mobile">اختر هذه الباقة</label>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <img src="https://drive.google.com/thumbnail?id=1GDX97qUnh6tjrw6Q0MIohWDm4yB3jiU9&sz=w1000" alt="باقة المحمول" class="package-image">
+        </div>
+        <div class="col-md-8">
+          <div class="package-title">باقة المحمول</div>
+          <div class="package-details">
+            <ul>
+              <li>جهاز محمول</li>
+              <li>نظام كاشير SAAED POS للمبيعات والمخزون</li>
+              <li>نظام دفع الشبكة SAAED PAY</li>
+            </ul>
+          </div>
+          <div class="price-options">
+            <div class="mb-2">
+              <label for="duration-mobile">📅 مدة الاشتراك:</label>
+              <select id="duration-mobile" class="form-select" onchange="updatePriceForPackage('mobile')">
+                <option value="1">سنة واحدة</option>
+                <option value="2">سنتان</option>
+              </select>
+            </div>
+            <div class="mb-2">
+              <label for="paymentType-mobile">💳 طريقة الدفع:</label>
+              <select id="paymentType-mobile" class="form-select" onchange="updatePriceForPackage('mobile')">
+                <option value="monthly">اشتراك شهري</option>
+                <option value="cash">دفعة واحدة</option>
+              </select>
+            </div>
+            <div class="result" id="price-mobile">💵 السعر: -</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Global Confirmation Button -->
+    <div class="text-center">
+      <a id="globalConfirm" href="#" target="_blank" class="btn-custom">
+        ✅ للتواصل مع دال سين
+      </a>
+    </div>
+    
+    <!-- 
+      To share this page with your leads:
+      1. Host this page on your web server or a free platform (e.g., GitHub Pages).
+      2. Share the published URL with your leads so they can view it directly.
+    -->
+    
+  </div>
+
+  <footer class="mt-4">
+    <p>© 2025 جميع الحقوق محفوظة | <a href="https://dalseen.sa/ar">دال سين</a></p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Standard pricing data for each package
+    const prices = {
+      mix: { monthly: { 1: 399, 2: 299 }, cash: { 1: 4499, 2: 5299 } },
+      shamela: { monthly: { 1: 349, 2: 249 }, cash: { 1: 3850, 2: 4750 } },
+      asasiyah: { monthly: { 1: 279, 2: 199 }, cash: { 1: 3200, 2: 4200 } },
+      mobile: { monthly: { 1: 149, 2: 119 }, cash: { 1: 1668, 2: 2666 } }
+    };
+
+    // Special offer pricing for الباقة الشاملة and باقة المكس (applied only when payment method is cash)
+    const specialOffers = {
+      shamela: {
+        cash: {
+          1: { before: 3849, after: 3649 },
+          2: { before: 4749, after: 4249 }
+        }
+      },
+      mix: {
+        cash: {
+          1: { before: 4499, after: 4299 },
+          2: { before: 5299, after: 4799 }
+        }
+      }
+    };
+
+    // Package names for display and for the WhatsApp auto-typed message
+    const packageNames = {
+      mix: "باقة المكس",
+      shamela: "الباقة الشاملة",
+      asasiyah: "الباقة الأساسية",
+      mobile: "باقة المحمول"
+    };
+
+    // Pre-fill the WhatsApp message in Arabic
+    function updateGlobalConfirm() {
+      const pkg = getSelectedPackage();
+      if (!pkg) return;
+      const msg = `اريد اختيار "${packageNames[pkg]}"، معلومات أكثر فضلا`;
+      const encodedMsg = encodeURIComponent(msg);
+      document.getElementById("globalConfirm").href = `https://api.whatsapp.com/send?phone=966126491000&text=${encodedMsg}`;
+    }
+
+    // Update the price display for a given package
+    function updatePriceForPackage(pkg) {
+      const duration = parseInt(document.getElementById("duration-" + pkg).value);
+      const paymentType = document.getElementById("paymentType-" + pkg).value;
+
+      // If this package has a special offer for cash payments, show before/after prices
+      if (paymentType === "cash" && specialOffers[pkg] && specialOffers[pkg].cash[duration]) {
+        const offer = specialOffers[pkg].cash[duration];
+        document.getElementById("price-" + pkg).innerHTML = 
+          `💵 السعر: <span style="text-decoration: line-through;">${offer.before}</span> ${offer.after} ريال`;
+      } else {
+        // Otherwise, use the normal pricing
+        const price = (paymentType === "monthly")
+                        ? prices[pkg].monthly[duration]
+                        : prices[pkg].cash[duration];
+        document.getElementById("price-" + pkg).innerHTML = `💵 السعر: ${price} ريال`;
+      }
+      updateGlobalConfirm();
+    }
+
+    // Get the selected package radio value
+    function getSelectedPackage() {
+      const radios = document.getElementsByName('selectedPackage');
+      for (const radio of radios) {
+        if (radio.checked) {
+          return radio.value;
+        }
+      }
+      return null;
+    }
+
+    // Initialize price displays and attach event listeners when the page loads
+    window.onload = function() {
+      updatePriceForPackage('mix');
+      updatePriceForPackage('shamela');
+      updatePriceForPackage('asasiyah');
+      updatePriceForPackage('mobile');
+
+      const selects = document.querySelectorAll('.price-options select');
+      selects.forEach(select => {
+        select.addEventListener('change', updateGlobalConfirm);
+      });
+
+      const radios = document.querySelectorAll('input[name="selectedPackage"]');
+      radios.forEach(radio => {
+        radio.addEventListener('change', updateGlobalConfirm);
+      });
+
+      updateGlobalConfirm();
+    }
+  </script>
+</body>
+</html>
